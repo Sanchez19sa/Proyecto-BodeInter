@@ -88,7 +88,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="hero-section">
+    <section className="hero-section2">
       <div className="hero-container">
         <img 
           src={(heroData[0] as HeroItem).src} 
