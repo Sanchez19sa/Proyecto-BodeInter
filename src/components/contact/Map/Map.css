@@ -1,0 +1,38 @@
+.map-section {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 0;
+  width: 100%;
+}
+
+.map-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+.google-map-container {
+  width: 60%;
+  height: 500px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.541);
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.google-map-container iframe {
+  filter: grayscale(10%) contrast(90%) saturate(110%);
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .google-map-container {
+    width: 90%;
+    height: 300px;
+  }
+}
+

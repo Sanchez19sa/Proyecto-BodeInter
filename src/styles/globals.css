@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden; /* Previene el scroll horizontal */
+    display: flex; /* Añadido para mejor control del layout */
+    flex-direction: column; /* Organiza el contenido verticalmente */
+  }
+
+#root, /* o el nombre de tu contenedor principal de React */
+main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
