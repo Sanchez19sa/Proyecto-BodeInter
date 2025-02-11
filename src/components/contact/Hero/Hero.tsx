@@ -33,7 +33,7 @@ const heroData: HeroDataItem[] = [
   {
     type: "schedule",
     content: [
-      "Lunes a Viernes: 8:00 a.m - 12:00 p.m | 1:30 p.m - 6:00 p.m",
+      "Lunes a Viernes: 8:00 a.m - 12:00 p.m | 1:00 p.m - 5:00 p.m",
       "Sábado: 8:00 a.m - 12:30 p.m",
       "Domingos y festivos: Cerrado."
     ]
@@ -60,7 +60,9 @@ const Hero: React.FC = () => {
     return (
       <ul>
         {scheduleItem.content.map((item: string, index: number) => (
-          <li key={index}>{item}</li>
+          <li key={index}>
+            {item.replace(/(Lunes a Viernes|Sábado|Domingos y festivos)/g, '<strong>$1</strong>')}
+          </li>
         ))}
       </ul>
     );
@@ -99,7 +101,7 @@ const Hero: React.FC = () => {
           <strong>Horarios:</strong>
           <ul className="schedule-list">
             {heroData[2].content?.map((item: string, index: number) => (
-              <li key={index}>{item}</li>
+              <li key={index} dangerouslySetInnerHTML={{ __html: item.replace(/(Lunes a Viernes|Sábado|Domingos y festivos)/g, '<strong>$1</strong>') }}></li>
             ))}
           </ul>
           {getContent("contact")}
