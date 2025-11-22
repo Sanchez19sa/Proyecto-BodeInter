@@ -1,172 +1,79 @@
-import React, { useState } from 'react'
-import './Form.css'
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
-import contactImg from '../../../assets/img/contactImg.jpg'
-
-interface BaseField {
-  type: string;
-  name: string;
-  placeholder: string;
-  required: boolean;
-}
-
-interface InputField extends BaseField {
-  type: "input";
-  inputType: string;
-}
-
-interface PhoneField extends BaseField {
-  type: "phone";
-  countryCode: {
-    value: string;
-    flag: string;
-  };
-}
-
-type FormField = InputField | PhoneField;
-
-const formFields: FormField[] = [
-  {
-    type: "input",
-    name: "name",
-    placeholder: "Nombre completo",
-    inputType: "text",
-    required: true
-  },
-  {
-    type: "input",
-    name: "company",
-    placeholder: "Empresa",
-    inputType: "text",
-    required: true
-  },
-  {
-    type: "input",
-    name: "email",
-    placeholder: "Correo electrónico",
-    inputType: "email",
-    required: true
-  },
-  {
-    type: "phone",
-    name: "phone",
-    placeholder: "Número de teléfono",
-    countryCode: {
-      value: "+57",
-      flag: "🇨🇴"
-    },
-    required: true
-  }
-];
-
-const heroContent = {
-  header: {
-    title: "Contáctanos",
-    subtitle: "Utilice el siguiente formulario para ponerse en contacto con el equipo de atencion al cliente."
-  }
-};
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import './Form.css';
 
 const Form: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phone: ''
-  });
+  const form = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<'IDLE' | 'SENDING' | 'SENT' | 'ERROR'>('IDLE');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  const handlePhoneChange = (value: string) => {
-    setFormData(prevState => ({
-      ...prevState,
-      phone: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    const formattedPhone = formData.phone.startsWith('+') ? formData.phone : `+${formData.phone} `;
-    
-    const trimmedPhone = formattedPhone.trim();
+    setStatus('SENDING');
 
-    const whatsappMessage = encodeURIComponent(
-      `¡Hola! Bodeinter S.A.S, me gustaría recibir más información sobre sus servicios.\n\n` +
-      `A continuación, comparto mis datos:\n` +
-      `- Nombre y apellido: ${formData.name}\n` +
-      `- Empresa: ${formData.company}\n` +
-      `- Correo electrónico: ${formData.email}\n` +
-      `- Teléfono: ${trimmedPhone}\n\n` +
-      `Quedo atento a su respuesta.\n` +
-      `¡Gracias!`
-    );
+    // REEMPLAZA ESTOS VALORES CON LOS DE TU CUENTA DE EMAILJS
+    const SERVICE_ID = 'TU_SERVICE_ID';
+    const TEMPLATE_ID = 'TU_TEMPLATE_ID';
+    const PUBLIC_KEY = 'TU_PUBLIC_KEY';
 
-    const whatsappUrl = `https://wa.me/3155261930?text=${whatsappMessage}`;
-    window.open(whatsappUrl, '_blank');
+    if (form.current) {
+      emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+        .then((result) => {
+          console.log(result.text);
+          setStatus('SENT');
+        }, (error) => {
+          console.log(error.text);
+          setStatus('ERROR');
+        });
+    }
   };
+
+  if (status === 'SENT') {
+    return (
+      <div className="text-center py-12 animate-fade-in">
+        <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3 className="text-2xl font-bold text-slate-900 mb-2">¡Mensaje Enviado!</h3>
+        <p className="text-slate-600">Hemos recibido su solicitud. Un asesor se pondrá en contacto pronto.</p>
+        <button onClick={() => setStatus('IDLE')} className="mt-6 text-cyan-600 font-bold hover:underline">Enviar otro mensaje</button>
+      </div>
+    );
+  }
 
   return (
-    <div className="contact-form-section">
-      <div className="contact-form-wrapper">
-        <div className="contact-form-image">
-          <img 
-            src={contactImg} 
-            alt="Contact us illustration" 
-            loading="lazy"
-          />
+    <form ref={form} onSubmit={handleSubmit} className="space-y-6 animate-fade-in">
+      {status === 'ERROR' && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <strong className="font-bold">Error: </strong>
+          <span className="block sm:inline">No se pudo enviar el mensaje. Por favor intente más tarde o escriba a comercial@bodeinter.com</span>
         </div>
-        
-        <div className="contact-form-content">
-          <div className="contact-form-header">
-            <h1>{heroContent.header.title}</h1>
-            <p>{heroContent.header.subtitle}</p>
-          </div>
-          
-          <div className="contact-form-container">
-            <div className="contact-form-inner">
-              <form onSubmit={handleSubmit}>
-                {formFields.map((field, index) => (
-                  field.type === "phone" ? (
-                    <PhoneInput
-                      key={index}
-                      country={'co'}
-                      value={formData.phone}
-                      onChange={handlePhoneChange}
-                      inputProps={{
-                        name: field.name,
-                        required: field.required,
-                        placeholder: field.placeholder
-                      }}
-                    />
-                  ) : (
-                    <input
-                      key={index}
-                      type={field.inputType}
-                      name={field.name}
-                      value={formData[field.name as keyof typeof formData]}
-                      onChange={handleChange}
-                      placeholder={field.placeholder}
-                      required={field.required}
-                    />
-                  )
-                ))}
-                <button type="submit">
-                  Enviar mensaje →
-                </button>
-              </form>
-            </div>
-          </div>
+      )}
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label className="block text-sm font-bold text-slate-700 mb-2">Nombre</label>
+          {/* El atributo 'name' debe coincidir con las variables de tu template en EmailJS (ej: {{user_name}}) */}
+          <input type="text" name="user_name" required className="form-input" placeholder="Tu nombre" />
+        </div>
+        <div>
+          <label className="block text-sm font-bold text-slate-700 mb-2">Apellido</label>
+          <input type="text" name="user_surname" required className="form-input" placeholder="Tu apellido" />
         </div>
       </div>
-    </div>
-  )
-}
+      <div>
+        <label className="block text-sm font-bold text-slate-700 mb-2">Email</label>
+        <input type="email" name="user_email" required className="form-input" placeholder="tucorreo@empresa.com" />
+      </div>
+      <div>
+        <label className="block text-sm font-bold text-slate-700 mb-2">Mensaje</label>
+        <textarea name="message" required rows={5} className="form-input resize-none" placeholder="¿Cómo podemos ayudarte? Detalle su carga, origen y destino."></textarea>
+      </div>
+      <button type="submit" disabled={status === 'SENDING'} className="submit-btn w-full disabled:opacity-70 disabled:cursor-not-allowed">
+        {status === 'SENDING' ? 'Enviando...' : 'Enviar Mensaje'}
+      </button>
+    </form>
+  );
+};
 
-export default Form
+export default Form;
+

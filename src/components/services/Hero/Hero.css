@@ -1,15 +1,11 @@
-.hero-section {
-  padding: 20px;
-  background-color: #f5f5f5; /* Color de fondo */
+.services-hero-bg {
+  background-image: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1494412574643-35d324698425?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center; /* Centrar el texto */
-}
 
-.hero-container h2 {
-  margin: 10px 0; /* Espaciado entre los encabezados */
-  color: #333; /* Color del texto */
-}

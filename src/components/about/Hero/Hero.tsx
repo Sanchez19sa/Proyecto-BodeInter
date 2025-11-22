@@ -1,63 +1,20 @@
-import React from 'react'
-import './Hero.css'
+import React from 'react';
+import './Hero.css';
 
-const heroData = [
-    {
-        type: "header",
-        title: "Quienes Somos",
-        subtitle: "Nuestra empresa se dedica a ofrecer soluciones innovadoras en el sector tecnológico, comprometidos con la calidad y la satisfacción del cliente."
-    },
-    {
-        type: "mission",
-        title: "Misión",
-        description: "Calidad y servicio excepcionales."
-    },
-    {
-        type: "vision",
-        title: "Visión",
-        description: "Innovación constante y liderazgo."
-    },
-    {
-        type: "principles",
-        title: "Principios",
-        items: [
-            "Integridad",
-            "Innovación",
-            "Compromiso",
-            "Colaboración"
-        ]
-    }
-];
+const Hero: React.FC = () => {
+  return (
+    <div className="about-hero-bg text-white pt-20">
+      <div className="container mx-auto px-6 animate-fade-in">
+        <span className="text-cyan-400 font-bold tracking-widest uppercase text-sm block mb-4">Sobre Bodeinter</span>
+        <h1 className="text-5xl md:text-6xl font-bold mb-6">Nuestra Historia</h1>
+        <p className="text-slate-300 text-lg max-w-2xl mx-auto font-light">
+          Más de 10 años conectando sueños con destinos a través de soluciones logísticas innovadoras y eficientes.
+        </p>
+      </div>
+    </div>
+  );
+};
 
-const Hero = () => {
-    return (
-        <section className="about-hero">
-            <div className="container">
-                <div className="header-container">
-                    <h2 className="header-title">{heroData[0].title}</h2>
-                    <p className="header-subtitle">{heroData[0].subtitle}</p>
-                </div>
-                <div className="flex-container">
-                    {heroData.slice(1).map((item, index) => (
-                        <div className="text-center" key={index}>
-                            <h3>{item.title}</h3>
-                            {item.description ? (
-                                <p className="description">{item.description}</p>
-                            ) : (
-                                item.items && (
-                                    <ul className="principles-container">
-                                        {item.items.map((principle, itemIndex) => (
-                                            <li className="principles-item" key={itemIndex}>{principle}</li>
-                                        ))}
-                                    </ul>
-                                )
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    )
-}
+export default Hero;
 
-export default Hero
+

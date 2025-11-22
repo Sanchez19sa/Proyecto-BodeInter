@@ -1,20 +1,39 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Home from '../pages/Home/Home'
-import Contact from '../pages/Contact/Contact'
-import Services from '../pages/Services/Services'
-import About from '../pages/About/About'
 
-function AppRouter() {
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from '../components/Layout/Layout';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
+
+// Lazy load pages to split code into smaller chunks
+const Home = lazy(() => import('../pages/Home/Home'));
+const About = lazy(() => import('../pages/About/About'));
+const Services = lazy(() => import('../pages/Services/Services'));
+const Contact = lazy(() => import('../pages/Contact/Contact'));
+const NotFound = lazy(() => import('../pages/NotFound'));
+const PrivacyPolicy = lazy(() => import('../pages/PrivacyPolicy'));
+const Terms = lazy(() => import('../pages/Terms'));
+
+const AppRouter: React.FC = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/contacto" element={<Contact />} />
-      <Route path="/servicios" element={<Services />} />
-      <Route path="/acerca-de" element={<About />} />
-    </Routes>
-  )
-}
+    <BrowserRouter>
+      <Layout>
+        <Suspense fallback={<div className="pt-32 flex justify-center"><LoadingSpinner /></div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<Terms />} />
+            {/* Catch all route for 404 - Esto ahora funcionará correctamente con BrowserRouter */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </Layout>
+    </BrowserRouter>
+  );
+};
 
-export default AppRouter
+export default AppRouter;
+
 
