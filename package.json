@@ -1,6 +1,7 @@
 {
     "name": "mi-empresa",
     "version": "1.0.0",
+    "type": "module",
     "description": "Proyecto de ejemplo con React + TypeScript + Vite",
     "scripts": {
         "dev": "vite",
