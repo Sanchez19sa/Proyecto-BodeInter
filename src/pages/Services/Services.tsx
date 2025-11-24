@@ -37,7 +37,7 @@ const servicesList: Service[] = [
     title: 'Carga LCL',
     description: 'Carga consolidada (Less Container Load) para envíos parciales.',
     longDescription: 'Optimice sus costos pagando solo por el espacio que utiliza. Nuestro servicio de consolidación LCL le permite enviar mercancías de menor volumen compartiendo contenedor con otros clientes, manteniendo la regularidad y frecuencia de sus despachos sin esperar a llenar un contenedor completo. Gestionamos la desconsolidación en puerto de destino con agilidad.',
-    image: 'https://images.unsplash.com/photo-1494412651409-ae5d988a47fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
+    image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?q=80&w=2070&auto=format&fit=crop',
     icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
   },
   {
