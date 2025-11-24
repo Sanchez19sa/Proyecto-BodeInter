@@ -1,34 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Hero.css';
+import './Hero.css'; 
 
 const Hero: React.FC = () => {
   return (
-    <section className="hero-container relative">
-      {/* Video Background */}
-      <video 
-        autoPlay 
-        loop 
-        muted 
-        playsInline 
-        className="hero-video-bg"
-        poster="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop"
-      >
-        <source src="https://cdn.coverr.co/videos/coverr-container-ship-at-sea-5333/1080p.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-slate-900">
       
-      <div className="hero-overlay"></div>
+      <img 
+        src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop"
+        alt="Logística Internacional Marítima"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      />
+      
+      <div className="absolute inset-0 bg-slate-900/60 z-10"></div>
 
-      <div className="container mx-auto px-6 hero-content pt-32 pb-40"> {/* Added pb-40 to give space for bottom cards */}
+      <div className="container mx-auto px-6 relative z-20 pt-32 pb-32">
         <div className="flex flex-col items-center text-center">
             
-            {/* REMOVED CERTIFIED BADGE AS REQUESTED */}
-            
             <div className="mb-6 animate-fade-in-up max-w-4xl">
-                {/* Main Heading */}
                 <div className="flex flex-col items-center justify-center gap-4 mb-2">
-                        {/* Logo Icon (Visual Anchor) */}
                         <div className="w-16 h-16 md:w-20 md:h-20 bg-blue-600/90 backdrop-blur rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(37,99,235,0.5)] mb-4 animate-float">
                             <span className="text-white font-bold text-4xl md:text-5xl">B</span>
                         </div>
