@@ -22,6 +22,10 @@ const Contact: React.FC = () => {
     {
       q: "¿Tienen cobertura puerta a puerta?",
       a: "Absolutamente. Ofrecemos servicios Door-to-Door (Puerta a Puerta) encargándonos desde la recogida en fábrica hasta la entrega final en sus bodegas."
+    },
+    {
+      q: "¿Qué medidas de seguridad tienen en sus bodegas?",
+      a: "Nuestras instalaciones cuentan con vigilancia 24/7, sistemas de alarma, control de acceso y monitoreo por CCTV para garantizar la seguridad de su mercancía en todo momento."
     }
   ];
 
@@ -55,7 +59,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-800 text-lg">Visítanos</h4>
-                    <p className="text-slate-600">Zona Franca Bogotá, Colombia</p>
+                    <p className="text-slate-600">Zona Franca Zofiva Caldas - Antioquia</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 group">
@@ -73,7 +77,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-800 text-lg">Llámanos</h4>
-                    <p className="text-slate-600">+57 601 123 4567</p>
+                    <p className="text-slate-600">+57 315 526 1930</p>
                   </div>
                 </div>
               </div>

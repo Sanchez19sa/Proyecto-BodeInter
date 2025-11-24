@@ -11,9 +11,9 @@ const Form: React.FC = () => {
     setStatus('SENDING');
 
     // REEMPLAZA ESTOS VALORES CON LOS DE TU CUENTA DE EMAILJS
-    const SERVICE_ID = 'TU_SERVICE_ID';
-    const TEMPLATE_ID = 'TU_TEMPLATE_ID';
-    const PUBLIC_KEY = 'TU_PUBLIC_KEY';
+    const SERVICE_ID = 'service_y6seoaq';
+    const TEMPLATE_ID = 'template_8at1uhw';
+    const PUBLIC_KEY = '8dzZfrnQXKubcm8G2';
 
     if (form.current) {
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
