@@ -11,7 +11,7 @@ const Form: React.FC = () => {
     setStatus('SENDING');
 
     // REEMPLAZA ESTOS VALORES CON LOS DE TU CUENTA DE EMAILJS
-    // VARIABLES DE ENTORNO.
+    // VARIABLES DE ENTORNO
     const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
