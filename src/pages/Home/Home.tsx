@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Hero from '../../components/home/Hero/Hero';
 import Discover from '../../components/home/Discover/Discover';
@@ -10,15 +9,9 @@ const Home: React.FC = () => {
   return (
     <div className="w-full">
       <Hero />
-      
-      {/* Wave Divider Top */}
-      <div className="relative bg-slate-50">
-         <Discover />
-      </div>
-      
-      {/* SECTION: Process / How we work (DARK MODE) */}
+      <Discover />
+
       <section className="py-32 bg-slate-900 relative overflow-hidden">
-        {/* Top Wave Divider */}
         <div className="custom-shape-divider-top">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill" fill="#f8fafc"></path>
@@ -84,13 +77,8 @@ const Home: React.FC = () => {
             </div>
         </div>
       </section>
-
-      {/* SECTION: Currency Widget with Parallax Background */}
       <section className="relative py-40 bg-fixed bg-center bg-cover" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1577993483575-712c24db9094?q=80&w=2070&auto=format&fit=crop')" }}>
-        {/* Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 to-blue-900/80"></div>
-        
-        {/* Wave Divider Top (Inverted Color to match Dark Mode previous section) */}
         <div className="custom-shape-divider-top">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1133.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill" fill="#0f172a"></path>
@@ -121,7 +109,6 @@ const Home: React.FC = () => {
             </div>
         </div>
 
-        {/* Wave Divider Bottom */}
         <div className="custom-shape-divider-bottom">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1133.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill" fill="#f8fafc"></path>
@@ -163,14 +150,11 @@ const Home: React.FC = () => {
          </div>
       </section>
 
-      {/* New Testimonials Section */}
       <Testimonials />
 
-      {/* MEGA CTA SECTION */}
       <CtaSection />
     </div>
   );
 };
 
 export default Home;
-

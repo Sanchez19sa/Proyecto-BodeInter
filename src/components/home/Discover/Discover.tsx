@@ -49,7 +49,7 @@ const Discover: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-slate-50 relative z-20 -mt-20">
+    <section className="py-16 md:py-24 bg-slate-50 relative z-20 mt-0 md:-mt-20">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((item, idx) => (
@@ -84,4 +84,3 @@ const Discover: React.FC = () => {
 };
 
 export default Discover;
-
