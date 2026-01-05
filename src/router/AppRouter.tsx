@@ -1,4 +1,3 @@
-
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
@@ -15,9 +14,20 @@ const Terms = lazy(() => import('../pages/Terms'));
 
 const AppRouter: React.FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <Layout>
-        <Suspense fallback={<div className="pt-32 flex justify-center"><LoadingSpinner /></div>}>
+        <Suspense
+          fallback={
+            <div className="pt-32 flex justify-center">
+              <LoadingSpinner />
+            </div>
+          }
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -25,7 +35,6 @@ const AppRouter: React.FC = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
-            {/* Catch all route for 404 - Esto ahora funcionará correctamente con BrowserRouter */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
@@ -35,5 +44,3 @@ const AppRouter: React.FC = () => {
 };
 
 export default AppRouter;
-
-
