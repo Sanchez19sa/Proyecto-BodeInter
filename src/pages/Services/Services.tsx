@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import PageHero from '../../components/ui/PageHero'; // Unified Hero
@@ -64,6 +63,19 @@ const Services: React.FC = () => {
     }
   }, [searchParams]);
 
+  // NEW: Lock Body Scroll when Modal is Open to prevent background scrolling
+  useEffect(() => {
+    if (selectedService) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    // Cleanup function to restore scroll if component unmounts
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedService]);
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Parallax Hero */}
@@ -116,10 +128,10 @@ const Services: React.FC = () => {
         </div>
       </div>
 
-      {/* MODAL */}
+      {/* MODAL - Updated: added 'overscroll-contain' to prevent background scroll chaining */}
       {selectedService && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-              <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden relative animate-fade-in-up max-h-[90vh] overflow-y-auto custom-scrollbar">
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+              <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden relative animate-fade-in-up max-h-[90dvh] overflow-y-auto custom-scrollbar overscroll-contain">
                   <button 
                     onClick={() => setSelectedService(null)}
                     className="absolute top-4 right-4 bg-white/80 rounded-full p-2 hover:bg-slate-200 transition-colors z-10"
@@ -170,5 +182,3 @@ const Services: React.FC = () => {
 };
 
 export default Services;
-
-
