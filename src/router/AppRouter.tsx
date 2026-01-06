@@ -1,7 +1,9 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
+
+const { HashRouter, Routes, Route } = ReactRouterDOM;
 
 // Lazy load pages to split code into smaller chunks
 const Home = lazy(() => import('../pages/Home/Home'));
@@ -14,20 +16,9 @@ const Terms = lazy(() => import('../pages/Terms'));
 
 const AppRouter: React.FC = () => {
   return (
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <HashRouter>
       <Layout>
-        <Suspense
-          fallback={
-            <div className="pt-32 flex justify-center">
-              <LoadingSpinner />
-            </div>
-          }
-        >
+        <Suspense fallback={<div className="pt-32 flex justify-center"><LoadingSpinner /></div>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -39,7 +30,7 @@ const AppRouter: React.FC = () => {
           </Routes>
         </Suspense>
       </Layout>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
