@@ -3,7 +3,7 @@ import * as ReactRouterDOM from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 
-const { HashRouter, Routes, Route } = ReactRouterDOM;
+const { BrowserRouter, Routes, Route } = ReactRouterDOM;
 
 // Lazy load pages to split code into smaller chunks
 const Home = lazy(() => import('../pages/Home/Home'));
@@ -16,7 +16,7 @@ const Terms = lazy(() => import('../pages/Terms'));
 
 const AppRouter: React.FC = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Layout>
         <Suspense fallback={<div className="pt-32 flex justify-center"><LoadingSpinner /></div>}>
           <Routes>
@@ -30,7 +30,7 @@ const AppRouter: React.FC = () => {
           </Routes>
         </Suspense>
       </Layout>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
